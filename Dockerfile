@@ -1,10 +1,11 @@
-FROM ubuntu
+FROM gliderlabs/alpine:3.1
 
-RUN apt-get -y install wget
+RUN apk --update add tar wget
 
-ENV APP HeavyThing-1.13
+ENV VERSION 1.13
+ENV APP HeavyThing-$VERSION
 
-RUN wget https://2ton.com.au/$APP.tar.gz
+RUN wget --no-check-certificate https://2ton.com.au/$APP.tar.gz
 RUN tar zxvf $APP.tar.gz
 WORKDIR $APP
 
